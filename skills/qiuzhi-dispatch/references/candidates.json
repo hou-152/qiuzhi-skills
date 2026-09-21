@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "discovery": "通过宿主已安装技能目录按 name 定位；不假定兄弟目录布局",
+  "candidates": [
+    {"name": "qiuzhi-agent", "delivers": "求职成品与明确授权的本地记录写入", "when": "拆 JD、写招呼语、局部经历与面试稿、背调报告、写入台账", "not_for": "纯方法问答、只要陪练反馈、投递诊断草稿"},
+    {"name": "qiuzhi-coach", "delivers": "判断、依据、体检、下一步", "when": "练习与反馈、看看哪里没做好、带着具体问题走一轮", "not_for": "明确要求正式成品或台账写入"},
+    {"name": "qiuzhi-course", "delivers": "通用方法、判断标准与步骤", "when": "环节怎么做、术语解释、核对用户提供的课程来源", "not_for": "用户专属成品、个人台账计算、完整陪练"},
+    {"name": "qiuzhi-delivery", "delivers": "投递数据诊断与登记草稿", "when": "拿本人台账盘点、定位断点、整理新增行草稿", "not_for": "实际写入台账、改简历或招呼语正文、纯方法问答"}
+  ]
+}
