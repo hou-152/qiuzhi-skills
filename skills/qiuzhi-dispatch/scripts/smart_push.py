@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """求职 Skill 工具箱 · 主动推进扫描：读状态文件里的到期项，生成结构化提醒。
 
-用法：
-  python3 scripts/smart_push.py                     # 扫描默认状态文件 .qiuzhi/state.json
-  python3 scripts/smart_push.py --state <path>      # 指定状态文件
-  python3 scripts/smart_push.py --dry-run           # 只输出，不写扫描记录
+用法（npx 安装后脚本随包位于 .agents/skills/qiuzhi-dispatch/scripts/；直接克隆仓库则为 skills/qiuzhi-dispatch/scripts/）：
+  python3 <脚本路径>/smart_push.py                     # 扫描默认状态文件 .qiuzhi/state.json
+  python3 <脚本路径>/smart_push.py --state <path>      # 指定状态文件
+  python3 <脚本路径>/smart_push.py --dry-run           # 只输出，不写扫描记录
 
-状态文件示例：skills/qiuzhi-dispatch/assets/state.example.json（复制后按自己的线索填写）。
+状态文件示例：同 skill 的 assets/state.example.json（复制后按自己的线索填写）。
 
 输出：
   - 有到期项 → JSON：每条提醒含线索 id / 公司 / 该做什么 / 截止日 / 逾期天数 / 是否需要本人决定
@@ -84,7 +84,7 @@ def main():
     state_path = Path(args.state)
     if not state_path.is_file():
         print(f"ERROR: 状态文件不存在：{state_path}\n"
-              f"      可先复制示例：cp skills/qiuzhi-dispatch/assets/state.example.json .qiuzhi/state.json",
+              f"      可先复制示例：cp <skill 目录>/assets/state.example.json .qiuzhi/state.json",
               file=sys.stderr)
         return 1
 

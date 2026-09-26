@@ -4,8 +4,9 @@
 
 ## 2026-09-27 增补
 
-- 新增可选的主动推进脚本 `scripts/smart_push.py` 与状态文件示例 `skills/qiuzhi-dispatch/assets/state.example.json`。
+- 新增可选的主动推进脚本（随包位于 `skills/qiuzhi-dispatch/scripts/smart_push.py`）与状态文件示例 `skills/qiuzhi-dispatch/assets/state.example.json`。
 - 脚本实测（Python 3.9 实机）：对示例状态文件分别构造「已到期／未到期」两场景，输出与预期一致（到期提醒含线索、动作、逾期天数与人工检查点标记；未到期返回 `NO_ACTION_NEEDED`）；在维护方自有状态文件上同样正确运行。
+- 首次推送后经 `npx skills add` 安装校验发现脚本原放在仓库根 `scripts/` 不随包安装，已挪入 `qiuzhi-dispatch` skill 内并复推；复验五入口安装成功且脚本随包可用。
 - `check_bundle.py` 复跑通过：新增文件无本机路径与私人材料；示例 JSON 可被标准 `json` 解析、无个人数据行；README 相对链接有效。
 - 本轮未包含自动漏斗诊断与证据提取脚本：两者仍在开发中、未经真实数据验证，不随包发布。
 
