@@ -46,6 +46,17 @@ npx -y skills add hou-152/qiuzhi-skills -g --skill qiuzhi-dispatch
 
 “只要登记草稿”交 delivery；“把已确认记录写进这个文件”交 agent。普通方法问答交 course，个人问题反馈交 coach。
 
+## 主动推进（可选）
+
+不想自己记每条线索的下一步，可以配一个本地状态文件做到期提醒：
+
+```bash
+mkdir -p .qiuzhi && cp skills/qiuzhi-dispatch/assets/state.example.json .qiuzhi/state.json   # 按自己线索改
+python3 scripts/smart_push.py --state .qiuzhi/state.json
+```
+
+有到期项时输出结构化提醒（哪条线索、该做什么、逾期几天、是否需要本人决定），没有则返回 `NO_ACTION_NEEDED`。脚本只读状态文件并追加一条扫描记录；涉及对外发送、薪资承诺、买票动身、offer 取舍的动作**只做提醒标记，发送与决定始终由本人执行**。
+
 ## 设计：逆熵
 
 这套工具箱的顶端设计只有一个词：**逆熵**。

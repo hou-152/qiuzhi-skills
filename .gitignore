@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 .qiuzhi/
 evals/
+.mimosa/
 .env
 .env.*
 !.env.example

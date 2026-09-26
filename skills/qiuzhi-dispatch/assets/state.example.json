@@ -1,0 +1,86 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-09-27",
+  "purpose": "求职线索状态文件：每条线索记当前阶段与下一步（含截止日）。scripts/smart_push.py 扫描 tracks[].next.due 到期项生成提醒；log 只追加，缺失信息标「待补」不猜。route 指向本工具箱五个入口（qiuzhi-agent/qiuzhi-coach/qiuzhi-course/qiuzhi-delivery）或 action:人工检查点。",
+  "human_checkpoints": [
+    "接受或拒绝任何 offer（含口头意向）",
+    "买票／异地投入／试岗动身",
+    "对外发送任何消息：招呼语、追问、婉拒",
+    "薪资与到岗承诺说出口之前",
+    "投递脚本或自动化的启停与授权变更"
+  ],
+  "current": {
+    "stage": "示例：秋招投递中",
+    "date": "2026-09-27",
+    "attention_top": [
+      "示例：公司A 面试准备",
+      "示例：明日到期的追问消息"
+    ]
+  },
+  "tracks": [
+    {
+      "id": "T1",
+      "company": "示例公司A",
+      "position": "AI 产品实习生",
+      "stage": "已约面试",
+      "next": {
+        "action": "示例：面试前过一遍 3Why 与项目数据（内部准备，可直接做）",
+        "owner": "本人",
+        "due": "2026-10-01"
+      },
+      "source": "示例：ledger.csv 第 1 行"
+    },
+    {
+      "id": "T2",
+      "company": "示例公司B",
+      "position": "产品实习生",
+      "stage": "已投递无回复",
+      "next": {
+        "action": "示例：满 72 小时后用 qiuzhi-delivery 复盘该批次",
+        "owner": "本人",
+        "due": null
+      },
+      "source": "示例：ledger.csv 第 2 行"
+    }
+  ],
+  "events_routing": [
+    {
+      "event": "interview_rejected",
+      "match": "被拒了／没过",
+      "route": "entry:qiuzhi-coach",
+      "note": "追问复盘：这次卡在哪→下场改一两处"
+    },
+    {
+      "event": "interview_upcoming",
+      "match": "约到面试",
+      "route": "entry:qiuzhi-agent",
+      "note": "背调＋面试表述稿；对外动作交回本人"
+    },
+    {
+      "event": "salary_talk",
+      "match": "聊薪资／期望薪资",
+      "route": "entry:qiuzhi-course + action:人工检查点",
+      "note": "先看谈薪方法卡；底线数字由本人定，承诺说出口前留人"
+    },
+    {
+      "event": "no_reply",
+      "match": "投了没回音",
+      "route": "entry:qiuzhi-delivery",
+      "note": "用本人投递记录做四层漏斗诊断"
+    },
+    {
+      "event": "offer_decision",
+      "match": "收到 offer",
+      "route": "action:人工检查点",
+      "note": "只列核实清单，决定归本人"
+    }
+  ],
+  "blockers": [],
+  "log": [
+    {
+      "date": "2026-09-27",
+      "event": "init",
+      "note": "从示例模板建立"
+    }
+  ]
+}
